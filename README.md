@@ -2,38 +2,61 @@
 
 bizhawk-co-op is a Lua script for BizHawk that allows two or more people to play a co-op experience by sharing inventory/ammo/hp over the network. This will work with vanilla versions of the games and also randomizers.
 
-## Metroid: Zero Mission Co-op
+## Mega Man Battle Network 3
 
-Health and ammo is shared. Items obtained by a player are given to everyone. Items locations are split such that each item can be optained by only one player. The other players will find a screw attack block in its place. The items at the unknown item locations, power grip location, and imago location can be obtained by either player. Events such as boss deaths are also shared.
+Enable two instances of BizHawk running MMBN 3 to communicate with each other to syncronize various in game items and statuses (library, zenny, etc.) to allow for 100% completion in each game (which normally requires trading version exclusive battlechips).
 
-## Link to the Past Co-op
+# API Specification (WIP)
 
-Items obtained by a player are given to everyone. Items locations are split such that each item can be optained by only one player. It's usually a good idea to spread out on the overworld and communicate which items still need to be checked by who. With Split Keys or Raid Bosses enabled, it's highly recommended to enter dungeons together. The following can are configurable:
- 
-* **Health and Ammo** Health and ammo is shared. This includes bottles, bombs, arrows, magic, etc. Death is synced, so if you notice a pause, it's because the script is waiting for everyone to die together
-* **Split Big Keys** If enabled then dungeon Big Keys will be split so only one person can obtain it. Otherwise either player can get them.
-* **Split Small Keys** Similar to Big Keys, but is for the dungeon Small Keys. This includes Pot Keys and Enemy Drop Keys. Using a key does not remove other players keys. When disabled keys are not shared.
-* **Raid Bosses** Bosses share HP. Bosses have scaled HP based on the number players. Players get a damage boost if they attack the boss together at the same time. If everyone is fighting together, then the boss should have similar amount of health as solo. A known bug is that boss that can normally be killed in one hit still die in one hit, so bring your silver arrows with you. You can also have someone stay behind and be the dedicated healer at the cost of dps.
+sync library (could use ramsync, no side effects)
+sync zenny (abusable with saving/reseting)
+sync bugfrags (abusable with saving/reseting)
 
-| Players | Boss HP |
-|---|-------|
-| 1 | 1x    |
-| 2 | 3.5x  |
-| 3 | 9.5x  |
-| 4 | 23.5x |
-| 5 | 55.5x |
-| ... | ... |
+sync packs (complicated)
+sync folder (complicated)
+sync navicust parts (complicated)
 
-* **Junk Chests** If enabled then item locations not owned by players are filled with random junk items. Having this enabled will make it harder to coordinate who still needs to chest some item location. When disabled they are instead replaced with empty chests. If you find an empty location it means that someone else owns that item location and should check it still.
+sync regups (questionable)
+sync key items (questionable)
 
-## Ocarina of Time Cross World Co-op
+sync jobs (technically possible)
+sync virus lab (technically possible)
 
-Nothing is shared, however there are now player specific items which are mixed between all the worlds. So if you obtain an item for yourself only you get it. If you obtain an item for another player then only they get it. This effectively means everyone will be playing different intermingled seeds.
+disable cheats (may or may not need, for 3)
 
-This works with the latest OoT Randomizer found on the website [https://www.ootrandomizer.com](https://www.ootrandomizer.com/) and the latest major release of the source code [GitHub](https://github.com/TestRunnerSRL/OoT-Randomizer/tree/master). Set the Player Count to the number and use the same settings and seed. Each player should then set a unique Player ID (from 1 to the Player Count). The output filename should be the **same** for every player except the last number which indicates the player ID (excluding `-comp`). The logic will guarantee that every player can beat the game.  
-* **2-Player File name example:** 
-> - `OoT_R4AR3PKKPKF8UK7DSA_TestSeed_W2P1-comp.z64`
-> - `OoT_R4AR3PKKPKF8UK7DSA_TestSeed_W2P2-comp.z64` 
+# Notes
+
+Might need to maintain external state to prevent save abuse
+
+If the powershell script doesn't run, try running: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+# References
+
+Our fork of TestRunner's bizhawk-co-op
+https://github.com/TeamBattleNet/CooPatch
+
+Our Project Page
+https://github.com/TeamBattleNet/CooPatch/projects/1
+
+Markro's BN3 function hooks
+https://github.com/TeamBattleNet/CooPatchTest/blob/master/CooPatch.lua
+
+VBA/Bizhawk shim, to allow lua scripts written for VBA-rr to run in BizHawk. (more relevant for our other projects)
+https://gist.github.com/adituv/265be838fa183d93634b3fd9833c0479
+
+Check `comm` tab for built in bizhawk networking (probably won't use)
+http://tasvideos.org/Bizhawk/LuaFunctions.html
+
+bizhawk-co-op is a Lua script for BizHawk that allows two or more people to play a co-op experience by sharing inventory/ammo/hp over the network. This will work with vanilla versions of the games and also randomizers.
+https://github.com/TestRunnerSRL/bizhawk-co-op
+
+This is an emulator hack that turns 1-player games into 2-player games by sharing in-game inventory over the internet.
+https://github.com/mcclure/emu-coop (snes 9x)
+
+QUsb2Snes is a websocket server that provide an unified protocol for accessing hardware/software that act like a SNES (or are a SNES). A classic usage is to use the FileViewer client to upload roms to your SD2SNES. But it allows for more advanced usage like reading/writing the memory of the SNES.
+https://github.com/Skarsnik/QUsb2snes (real SNES hardware)
+
+---
 
 ## Setup
 There are two different methods to install.
