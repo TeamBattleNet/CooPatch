@@ -37,8 +37,8 @@ $destination = $shell_app.namespace((Get-Location).Path + "\luasocket")
 $destination.Copyhere($zip_file.items())
 Remove-Item $filename
 
-#download bizhawk-co-op
-$url = "https://github.com/TestRunnerSRL/bizhawk-co-op/archive/master.zip"
+#download TeamBN's bizhawk-co-op fork
+$url = "https://github.com/TeamBattleNet/CooPatch/archive/master.zip"
 $filename = "bizhawk-co-op.zip"
 Invoke-WebRequest -Uri $url -OutFile $filename
 #unzip
