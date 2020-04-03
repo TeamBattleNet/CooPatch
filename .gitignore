@@ -35,3 +35,5 @@ tabletostr\.lua
 
 *.bin
 N64/
+DiscoHawk.exe.config
+EmuHawk.exe.config
