@@ -48,8 +48,8 @@ $destination.Copyhere($zip_file.items())
 Remove-Item $filename
 
 #Copy files into Bizhawk
-Move-Item -Path .\bizhawk-co-op-master\* -Destination .\BizHawk-2.3\
-Remove-Item .\bizhawk-co-op-master -Recurse
+Move-Item -Path .\CooPatch-master\* -Destination .\BizHawk-2.3\
+Remove-Item .\CooPatch-master -Recurse
 
 Move-Item -Path .\luasocket\mime -Destination .\BizHawk-2.3\
 Move-Item -Path .\luasocket\socket -Destination .\BizHawk-2.3\
